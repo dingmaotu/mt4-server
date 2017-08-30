@@ -17,7 +17,7 @@ MQL5 (with OO capabilities like C++). But they faced extreme difficulty when
 doing this because of the widespread use of MetaTrader4 and the lack of certain
 features in MetaTrader5 Terminal. You know that, Python2/3, Perl5/6, etc. Things
 like these happen. However, a good thing is that MQL4 and MQL5 has been merged
-and they at least make the language backward.
+and they at least make the language backward compatible.
 
 For more information about MQL you can check out my
 library [mql4-lib](https://github.com/dingmaotu/mql4-lib) and see what problems
@@ -28,9 +28,10 @@ platform and a lot of people want to jump out of the MetaTrader4 jail. They just
 want to use the MQL trading API and don't want to use the MetaTrader4 Terminal.
 MetaQuotes used to provide a standalone MQL compiler and C++ SDK for writing
 clients to interact directly with the MetaTrader4 server. Then they stopped all
-these and we can only use MetaTrader4 Terminal for executing trades. The
-Terminal can hold multiple accounts, but only one account can be active. And it
-is extremely difficult to call into MQL from outside
+these and we can only use MetaTrader4 Terminal for executing trades and
+MetaEditor to compile MQL programs. The Terminal can hold multiple accounts, but
+only one account can be active. And it is extremely difficult to call into MQL
+from outside
 (see
 [a description of this problem](https://github.com/dingmaotu/mql4-lib#external-events)).
 This is understandable since as a commercial offering, it is reasonable to not
