@@ -214,7 +214,7 @@ void Mt4ServerRaw::main()
          m_clients.remove(client);
         }
       SafeDelete(command);
-      SafeDelete(reply);
+      if(reply!=Nil) SafeDelete(reply);
       SafeDelete(client);
 
       if(!m_socket.send(id,false,true) || !m_socket.send(response,false,true))

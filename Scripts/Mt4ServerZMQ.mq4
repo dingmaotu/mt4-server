@@ -120,8 +120,8 @@ void Mt4ServerZMQ::main()
 
       ArrayResize(m_replyBuffer,0,100);
       ZmqMsg response(reply.encode(m_replyBuffer,0));
-      delete command;
-      delete reply;
+      SafeDelete(command);
+      if(reply!=Nil) SafeDelete(reply);
       response.setData(m_replyBuffer);
       if(!m_socket.send(response))
         {
