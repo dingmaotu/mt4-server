@@ -95,6 +95,7 @@ void Mt4ServerZMQ::main()
          continue;
         }
 
+      ArrayResize(m_commandBuffer,request.size(),100);
       request.getData(m_commandBuffer);
 
       RespValue *command=m_parser.parse(m_commandBuffer);
@@ -117,6 +118,7 @@ void Mt4ServerZMQ::main()
          reply=m_processor.process(c);
         }
 
+      ArrayResize(m_replyBuffer,0,100);
       ZmqMsg response(reply.encode(m_replyBuffer,0));
       delete command;
       delete reply;

@@ -134,7 +134,6 @@ void Mt4ServerRaw::main()
          Print(">>> Failed retrieve client id: ",Zmq::errorMessage(Zmq::errorNumber()));
          continue;
         }
-      Print(">>> Debug: current clients: ",m_clients.size());
 
       TcpClient *client=new TcpClient(id);
       RespStreamParser *parser=NULL;
@@ -176,10 +175,7 @@ void Mt4ServerRaw::main()
            }
         }
 
-      Print(">>> Debug: current clients: ",m_clients.size());
-
-      PrintFormat(">>> Debug: received %d bytes",request.size());
-
+      ArrayResize(m_commandBuffer,request.size(),100);
       request.getData(m_commandBuffer);
       parser.feed(m_commandBuffer);
       RespValue *command=parser.parse();
@@ -205,7 +201,9 @@ void Mt4ServerRaw::main()
          Print(">>> Received command: ",c.toString());
          reply=m_processor.process(c);
         }
-      //--- the client is trying to disconnect from the server
+
+      ArrayResize(m_replyBuffer,0,100);
+      //--- the client is trying to disconnect from the server if the reply is NULL
       ZmqMsg response(reply==NULL?0:reply.encode(m_replyBuffer,0));
       if(reply!=NULL)
         {
