@@ -134,7 +134,7 @@ public:
      {
       if(command.size()!=3 && command.size()!=2) return new RespError("Invalid number of arguments for command CLOSE!");
       int ticket=(int)StringToInteger(dynamic_cast<RespBytes*>(command[1]).getValueAsString());
-      if(!OrderPool::selectByTicket(ticket))
+      if(!Order::Select(ticket))
         {
          return new RespError("Order does not exist!");
         }
