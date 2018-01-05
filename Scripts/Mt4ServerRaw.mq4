@@ -217,7 +217,7 @@ void Mt4ServerRaw::main()
       if(reply!=Nil) SafeDelete(reply);
       SafeDelete(client);
 
-      if(!m_socket.send(id,false,true) || !m_socket.send(response,false,true))
+      if(!m_socket.sendMore(id) || !m_socket.send(response))
         {
          Alert(StringFormat(">>> Critical error: failed to send response to client!!! (%s)",
                Zmq::errorMessage(Zmq::errorNumber())
