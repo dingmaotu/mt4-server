@@ -42,7 +42,7 @@ public:
       PrintFormat(">>> Debug: client id is %d bytes",msg.size());
       msg.getData(m_id);
      }
-   bool              equals(TcpClient *client) const
+   bool              equals(const TcpClient *client) const
      {
       return ArrayCompare(m_id, client.m_id) == 0;
      }
@@ -57,11 +57,11 @@ public:
 class TcpClientEqualityComparer: public EqualityComparer<TcpClient*>
   {
 public:
-   bool              equals(TcpClient *left,TcpClient *right) const
+   bool              equals(const TcpClient *left,const TcpClient *right) const
      {
       return left.equals(right);
      }
-   int               hash(TcpClient *value) const
+   int               hash(const TcpClient *value) const
      {
       return value.hash();
      }
